@@ -4,9 +4,9 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    // Use Jenkins credentials to securely access the GitHub Personal Access Token
+                    // Use the correct GitHub PAT stored as a secret text
                     withCredentials([string(credentialsId: 'github-token', variable: 'GH_TOKEN')]) {
-                        // Set the GitHub token in the environment to authenticate the git commands
+                        // Use GH_TOKEN in your git commands
                         sh '''
                             git config --global credential.helper store
                             echo "https://$GH_TOKEN@github.com" > ~/.git-credentials
